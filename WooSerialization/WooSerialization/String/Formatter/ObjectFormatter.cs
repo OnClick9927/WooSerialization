@@ -17,7 +17,9 @@ namespace WooSerialization
                 if (field.IsNotSerialized) continue;
                 if (field.IsStatic) continue;
                 StringFormatter c = StringConvert.GetFormatter(field.FieldType);
+                builder.Append("\"");
                 builder.Append(field.Name);
+                builder.Append("\"");
                 builder.Append(StringConvert.colon);
                 c.ConvertToString(field.GetValue(t), builder);
                 builder.Append(StringConvert.dot);

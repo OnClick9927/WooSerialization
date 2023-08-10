@@ -13,28 +13,26 @@ namespace WooSerialization
         public override void ConvertToString(Dictionary<K, V> t, StringBuilder builder)
         {
             if (t == null || t.Count == 0) return;
-            builder.Append(StringConvert.midLeftBound);
+            builder.Append(StringConvert.leftBound);
             int count = 0;
             foreach (var item in t)
             {
                 var _key = item.Key;
                 var _value = item.Value;
                 count++;
-                builder.Append(StringConvert.leftBound);
-                builder.Append(keyChar);
-                builder.Append(StringConvert.colon);
+                builder.Append("\"");
                 k.ConvertToString(_key, builder);
-                builder.Append(StringConvert.dot);
-                builder.Append(valueChar);
+                builder.Append("\"");
+          
                 builder.Append(StringConvert.colon);
                 v.ConvertToString(_value, builder);
-                builder.Append(StringConvert.rightBound);
+       
                 if (count != t.Count)
                 {
                     builder.Append(StringConvert.dot.ToString());
                 }
             }
-            builder.Append(StringConvert.midRightBound);
+            builder.Append(StringConvert.rightBound);
 
         }
         private void Read(string self, Dictionary<K, V> result)
