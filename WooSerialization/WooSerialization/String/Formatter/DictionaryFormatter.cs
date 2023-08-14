@@ -20,10 +20,13 @@ namespace WooSerialization
                 var _key = item.Key;
                 var _value = item.Value;
                 count++;
-                builder.Append("\"");
-                k.ConvertToString(_key, builder);
-                builder.Append("\"");
-          
+                if (!(_key is string))
+                {
+                    builder.Append("\"");
+                    k.ConvertToString(_key, builder);
+                    builder.Append("\"");
+                }
+
                 builder.Append(StringConvert.colon);
                 v.ConvertToString(_value, builder);
        
